@@ -2,17 +2,17 @@
   {
     "title": "Contact & Availability",
     "keywords": ["contact", "email", "phone", "linkedin", "hire", "freelance", "reach", "location", "bangalore", "rate", "price"],
-    "content": "You can reach Rajesh S I via email at rajeshsirali21@gmail.com or by phone at +91 9380433994. He is based in Bangalore, Karnataka, India and is available for freelance contracts in data analytics and automation pipelines. Pricing is scoped per project based on dataset complexity and reporting needs."
+    "content": "You can reach Rajesh S I via email at rajeshirali12@gmail.com or by phone at +91 9380433994. He is based in Bangalore, Karnataka, India and is available for freelance contracts in data analytics and automation pipelines. Pricing is scoped per project based on dataset complexity and reporting needs."
   },
   {
     "title": "Services Offered",
     "keywords": ["services", "hire", "what do you do", "excel", "spreadsheets", "data cleaning", "automation", "dashboards", "sql", "pricing"],
-    "content": "Rajesh specializes in Advanced Excel automation (Power Query, Pivot Tables, formula workflows), automated data cleaning and validation, relational SQL databases (MySQL/MongoDB), and AI workflow integration. He eliminates repetitive manual tasks and builds self-updating executive dashboards."
+    "content": "Rajesh specializes in Advanced Excel automation (Power Query, Pivot Tables, formula workflows), automated data cleaning and validation, relational SQL databases (PostgreSQL/Supabase/MySQL), and AI workflow integration. He eliminates repetitive manual tasks and builds self-updating executive dashboards."
   },
   {
     "title": "Technical Toolset & Languages",
-    "keywords": ["skills", "technologies", "languages", "tools", "python", "excel", "mysql", "mongodb", "power query", "pandas"],
-    "content": "Technical skills include Python, Relational SQL, C, MySQL, MongoDB, Advanced Excel (Pivot Tables, VLOOKUP/XLOOKUP, Power Query, Data Sanitization), and AI workflow integrations."
+    "keywords": ["skills", "technologies", "languages", "tools", "python", "excel", "mysql", "postgresql", "supabase", "power query", "pandas"],
+    "content": "Technical skills include Python, Relational SQL, C, MySQL, PostgreSQL, Supabase, Advanced Excel (Pivot Tables, VLOOKUP/XLOOKUP, Power Query, Data Sanitization), and AI workflow integrations."
   },
   {
     "title": "Excel & Analytics Dashboard Case Study",

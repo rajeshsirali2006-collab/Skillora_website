@@ -14,7 +14,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onShowToast }) => {
     {
       id: 'msg-0',
       role: 'assistant',
-      text: "Hi there! I am Rajesh's portfolio assistant. How can I help you learn more about his data analytics and automation services?"
+      text: "👋 Welcome! I am Rajesh's Freelance Client Intake Assistant. I can answer any questions about his **Excel dashboards**, **data cleaning pipelines**, **turnaround timelines**, **pricing estimates**, and **NDA agreements**. How can I help with your project today?"
     }
   ]);
 
@@ -46,6 +46,9 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onShowToast }) => {
 
     // Bold **text**
     formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+    // Bullet points (• or -)
+    formatted = formatted.replace(/(?:^|\n)[•\-]\s+(.*)/g, '<br />• $1');
 
     // Auto-link emails
     formatted = formatted.replace(
@@ -97,6 +100,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onShowToast }) => {
 
       const data = await response.json();
       const reply = data.reply || getClientFallbackReply(text);
+      window.dispatchEvent(new CustomEvent('database-updated'));
 
       setMessages((prev) => [
         ...prev,
@@ -130,9 +134,10 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onShowToast }) => {
 
   const presets = [
     "What services do you offer?",
-    "Tell me about your Excel dashboard project.",
-    "Are you available for freelance work?",
-    "How can I contact Rajesh?"
+    "What is your typical turnaround time?",
+    "How does your pricing & quote process work?",
+    "Can you sign an NDA for our company data?",
+    "How can I contact or hire Rajesh?"
   ];
 
   return (
@@ -143,11 +148,11 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onShowToast }) => {
         className="clay-chat-toggle-btn"
         aria-expanded={isOpen}
         aria-controls="chatDialog"
-        aria-label="Open portfolio AI chat"
+        aria-label="Open client assistant chat"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="chat-toggle-sparkle">✨</span>
-        <span className="chat-toggle-text">Ask about Rajesh's Work</span>
+        <span className="chat-toggle-sparkle">💬</span>
+        <span className="chat-toggle-text">Client Assistant</span>
         <span className="chat-status-pulse"></span>
       </button>
 

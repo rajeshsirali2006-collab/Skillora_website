@@ -121,7 +121,7 @@ export const About: React.FC = () => {
                   <span className="group-title">Databases &amp; AI</span>
                   <div className="group-tags">
                     <span className="tech-chip">MySQL</span>
-                    <span className="tech-chip">MongoDB</span>
+                    <span className="tech-chip">PostgreSQL / Supabase</span>
                     <span className="tech-chip">Relational Schemas</span>
                     <span className="tech-chip">AI Workflow Tools</span>
                     <span className="tech-chip">Prompt Engineering</span>

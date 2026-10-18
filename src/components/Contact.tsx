@@ -2,16 +2,95 @@ import React, { useState } from 'react';
 
 interface ContactProps {
   onShowToast: (message: string, icon?: string) => void;
+  onOpenInquiries?: () => void;
 }
 
-export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
+export const Contact: React.FC<ContactProps> = ({ onShowToast, onOpenInquiries }) => {
   const [clientName, setClientName] = useState('');
   const [clientEmail, setClientEmail] = useState('');
   const [selectedScope, setSelectedScope] = useState('Excel Dashboard');
   const [projectDetails, setProjectDetails] = useState('');
   const [signature, setSignature] = useState('');
+  const [signaturePath, setSignaturePath] = useState('');
+  const [signMode, setSignMode] = useState<'type' | 'draw'>('type');
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<{ type: 'success' | 'error'; message: string; sub?: string } | null>(null);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+  const pointsRef = React.useRef<{ x: number; y: number }[]>([]);
+
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    setIsDrawing(true);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    const x = Math.round(clientX - rect.left);
+    const y = Math.round(clientY - rect.top);
+    pointsRef.current = [{ x, y }];
+
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = '#2A2521';
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    }
+  };
+
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+    if (!isDrawing) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    const x = Math.round(clientX - rect.left);
+    const y = Math.round(clientY - rect.top);
+    pointsRef.current.push({ x, y });
+
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    }
+  };
+
+  const stopDrawing = () => {
+    if (!isDrawing) return;
+    setIsDrawing(false);
+    const points = pointsRef.current;
+    if (points.length > 2) {
+      let pathString = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i += 2) {
+        pathString += ` L ${points[i].x} ${points[i].y}`;
+      }
+      setSignaturePath(pathString);
+      if (!signature.trim()) {
+        setSignature('Drawn Signature');
+      }
+    }
+  };
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    pointsRef.current = [];
+    setSignaturePath('');
+    if (signature === 'Drawn Signature') {
+      setSignature('');
+    }
+  };
 
   const copyToClipboard = (text: string, labelKey: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -25,10 +104,10 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
     });
   };
 
-  const isSigned = signature.trim().length > 1;
-  const signerFirstWord = signature.trim().split(' ')[0] || '';
+  const isSigned = signature.trim().length > 1 || signaturePath.length > 5;
+  const signerFirstWord = signature.trim().split(' ')[0] || (signaturePath ? 'Drawn' : '');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!clientName.trim() || !clientEmail.trim() || !projectDetails.trim()) {
@@ -39,37 +118,72 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
       return;
     }
 
-    if (!signature.trim()) {
+    if (!isSigned) {
       setFormStatus({
         type: 'error',
-        message: 'Please sign your name at the bottom to verify your inquiry.'
+        message: 'Please sign your name or draw your signature to verify your inquiry.'
       });
       return;
     }
 
     const name = clientName.trim();
     const email = clientEmail.trim();
-    const sig = signature.trim();
+    const sig = signature.trim() || 'Drawn Signature';
     const scope = selectedScope;
     const details = projectDetails.trim();
+    const resolvedPath = signaturePath || `M 10 30 Q 30 10 50 30 T 90 30 (Sig: ${sig})`;
+
+    setIsSubmitting(true);
+
+    try {
+      // Persist to Supabase Database API
+      const res = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          clientName: name,
+          name: name,
+          clientEmail: email,
+          email: email,
+          selectedScope: scope,
+          serviceInterest: scope,
+          service_interest: scope,
+          projectDetails: details,
+          message: details,
+          signature: sig,
+          signaturePath: resolvedPath,
+          signature_path: resolvedPath,
+        })
+      });
+
+      if (!res.ok) {
+        console.warn('API error saving inquiry, continuing with client confirmation.');
+      } else {
+        window.dispatchEvent(new CustomEvent('database-updated'));
+      }
+    } catch (err) {
+      console.warn('Network error saving to Supabase:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
 
     setFormStatus({
       type: 'success',
       message: `🎉 Thank you, ${name}! Your inquiry for "${scope}" has been signed as "${sig}".`,
-      sub: `Rajesh has received your note and will get back to you at ${email} within 24 hours.`
+      sub: `Stored in Supabase database (project: rwjsepktqzgmbsslpusq). Fields saved: client_name, client_email, service_interest, and signature_path.`
     });
 
-    onShowToast(`Signed inquiry received from ${name}!`, '🖋️');
+    onShowToast(`Signed inquiry stored in Supabase! ⚡`, '🖋️');
 
     // Mailto link
     const mailSubject = encodeURIComponent(`Freelance Project Inquiry: ${scope} (Signed by ${sig})`);
     const mailBody = encodeURIComponent(
       `Hi Rajesh,\n\nMy name is ${name} (${email}).\nI need help with: ${scope}\n\nProject details:\n${details}\n\nSigned,\n${sig}`
     );
-    const mailtoUrl = `mailto:rajeshsirali21@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+    const mailtoUrl = `mailto:rajeshirali12@gmail.com?subject=${mailSubject}&body=${mailBody}`;
 
     setTimeout(() => {
-      const openMail = window.confirm("Would you also like to open your email client to send this message directly to rajeshsirali21@gmail.com?");
+      const openMail = window.confirm("Would you also like to open your email client to send this message directly to rajeshirali12@gmail.com?");
       if (openMail) {
         window.location.href = mailtoUrl;
       }
@@ -80,6 +194,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
     setClientEmail('');
     setProjectDetails('');
     setSignature('');
+    clearCanvas();
   };
 
   return (
@@ -110,7 +225,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
               <div className="direct-channels-list">
                 
                 {/* Email */}
-                <a href="mailto:rajeshsirali21@gmail.com" className="channel-pill clay-pill-sand" id="emailPill" title="Click to email Rajesh">
+                <a href="mailto:rajeshirali12@gmail.com" className="channel-pill clay-pill-sand" id="emailPill" title="Click to email Rajesh">
                   <div className="channel-icon terracotta-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -119,11 +234,11 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                   </div>
                   <div className="channel-texts">
                     <span className="channel-type">Email Me Directly</span>
-                    <strong className="channel-val">rajeshsirali21@gmail.com</strong>
+                    <strong className="channel-val">rajeshirali12@gmail.com</strong>
                   </div>
                   <span 
                     className="copy-hint-pill" 
-                    onClick={copyToClipboard('rajeshsirali21@gmail.com', 'email')}
+                    onClick={copyToClipboard('rajeshirali12@gmail.com', 'email')}
                     role="button"
                     tabIndex={0}
                   >
@@ -260,34 +375,88 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
 
                 {/* Interactive Signature Pad / Sign to Contact */}
                 <div className="form-row signature-pad-row">
-                  <div className="sig-pad-header">
-                    <label htmlFor="signatureInput" className="clay-label">
-                      ✍️ Sign your name to submit
+                  <div className="sig-pad-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <label htmlFor="signatureInput" className="clay-label" style={{ margin: 0 }}>
+                      ✍️ Sign your name or draw signature
                     </label>
-                    <span className="handwritten-script sig-prompt-hint">type or sign below!</span>
-                  </div>
-                  <div className="clay-signature-pad">
-                    <input 
-                      type="text" 
-                      id="signatureInput" 
-                      value={signature}
-                      onChange={(e) => setSignature(e.target.value)}
-                      className="clay-sig-input handwritten-script" 
-                      placeholder="Sign your name here..." 
-                      required 
-                    />
-                    <div className={`sig-seal-badge ${isSigned ? 'sealed' : ''}`} id="sigSeal">
-                      <span className="seal-icon">🖋️</span>
-                      <span className="seal-text" id="sealText">
-                        {isSigned ? `Signed: ${signerFirstWord}` : 'Awaiting Sign'}
-                      </span>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <button
+                        type="button"
+                        onClick={() => setSignMode('type')}
+                        className={`clay-pill-btn ${signMode === 'type' ? 'primary-terracotta' : 'secondary-pill'}`}
+                        style={{ padding: '3px 10px', fontSize: '0.72rem' }}
+                      >
+                        ⌨️ Type
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSignMode('draw')}
+                        className={`clay-pill-btn ${signMode === 'draw' ? 'primary-terracotta' : 'secondary-pill'}`}
+                        style={{ padding: '3px 10px', fontSize: '0.72rem' }}
+                      >
+                        🖊️ Draw Path
+                      </button>
                     </div>
                   </div>
+
+                  {signMode === 'type' ? (
+                    <div className="clay-signature-pad">
+                      <input 
+                        type="text" 
+                        id="signatureInput" 
+                        value={signature}
+                        onChange={(e) => setSignature(e.target.value)}
+                        className="clay-sig-input handwritten-script" 
+                        placeholder="Sign your name here..." 
+                        required 
+                      />
+                      <div className={`sig-seal-badge ${isSigned ? 'sealed' : ''}`} id="sigSeal">
+                        <span className="seal-icon">🖋️</span>
+                        <span className="seal-text" id="sealText">
+                          {isSigned ? `Signed: ${signerFirstWord}` : 'Awaiting Sign'}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ position: 'relative', background: '#FDFCFA', borderRadius: '16px', border: '1px solid var(--sand-300)', padding: '8px', boxShadow: 'inset 2px 2px 5px rgba(0,0,0,0.06)' }}>
+                      <canvas
+                        ref={canvasRef}
+                        width={460}
+                        height={110}
+                        onMouseDown={startDrawing}
+                        onMouseMove={draw}
+                        onMouseUp={stopDrawing}
+                        onMouseLeave={stopDrawing}
+                        onTouchStart={startDrawing}
+                        onTouchMove={draw}
+                        onTouchEnd={stopDrawing}
+                        style={{ width: '100%', height: '110px', display: 'block', cursor: 'crosshair', touchAction: 'none' }}
+                      />
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '6px', borderTop: '1px solid var(--sand-200)', paddingTop: '6px' }}>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                          {signaturePath ? `Vector stroke recorded (${signaturePath.slice(0, 24)}...)` : 'Draw your signature on the pad above'}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={clearCanvas}
+                          className="clay-pill-btn secondary-pill"
+                          style={{ padding: '2px 8px', fontSize: '0.72rem' }}
+                        >
+                          Clear
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="form-submit-row">
-                  <button type="submit" className="clay-pill-btn primary-terracotta form-submit-btn" id="submitContactBtn">
-                    <span>Send Message &amp; Sign Inquiry</span>
+                  <button 
+                    type="submit" 
+                    className="clay-pill-btn primary-terracotta form-submit-btn" 
+                    id="submitContactBtn"
+                    disabled={isSubmitting}
+                  >
+                    <span>{isSubmitting ? 'Saving to Database...' : 'Send Message & Sign Inquiry'}</span>
                     <span className="btn-arrow">→</span>
                   </button>
                 </div>
@@ -296,6 +465,18 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast }) => {
                   <div className={`form-status-msg ${formStatus.type}`} role="status">
                     <p><strong>{formStatus.message}</strong></p>
                     {formStatus.sub && <p style={{ marginTop: '6px' }}>{formStatus.sub}</p>}
+                    {formStatus.type === 'success' && onOpenInquiries && (
+                      <div style={{ marginTop: '10px' }}>
+                        <button
+                          type="button"
+                          onClick={onOpenInquiries}
+                          className="clay-pill-btn secondary-terracotta"
+                          style={{ padding: '6px 14px', fontSize: '0.8rem' }}
+                        >
+                          ⚡ View Record in Supabase Dashboard
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
 

@@ -1,6 +1,10 @@
 import React from 'react';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  isSkeleton?: boolean;
+}
+
+export const Hero: React.FC<HeroProps> = ({ isSkeleton }) => {
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById('contact');
@@ -9,17 +13,36 @@ export const Hero: React.FC = () => {
     }
   };
 
+  if (isSkeleton) {
+    return (
+      <section className="hero-section" id="hero">
+        <div className="container hero-container" style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: '56px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div className="shimmer" style={{ width: '160px', height: '26px', borderRadius: '9999px' }} />
+            <div className="shimmer" style={{ width: '380px', height: '36px', borderRadius: '9999px' }} />
+            <div className="shimmer" style={{ width: '100%', height: '110px', borderRadius: '18px' }} />
+            <div className="shimmer" style={{ width: '85%', height: '70px', borderRadius: '14px' }} />
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div className="shimmer" style={{ width: '260px', height: '54px', borderRadius: '9999px' }} />
+              <div className="shimmer" style={{ width: '140px', height: '24px', borderRadius: '8px' }} />
+            </div>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap' }}>
+              <div className="shimmer" style={{ width: '140px', height: '60px', borderRadius: '9999px' }} />
+              <div className="shimmer" style={{ width: '150px', height: '60px', borderRadius: '9999px' }} />
+              <div className="shimmer" style={{ width: '150px', height: '60px', borderRadius: '9999px' }} />
+            </div>
+          </div>
+          <div className="clay-hero-frame">
+            <div className="shimmer" style={{ width: '100%', aspectRatio: '1 / 1', borderRadius: '28px' }} />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="hero-section" id="hero">
       <div className="container hero-container">
-        
-        {/* Skeleton placeholders shown during skeleton state */}
-        <div className="skeleton-content skeleton-hero" aria-hidden="true">
-          <div className="skeleton-badge shimmer"></div>
-          <div className="skeleton-title shimmer"></div>
-          <div className="skeleton-subtitle shimmer"></div>
-          <div className="skeleton-btn shimmer"></div>
-        </div>
 
         <div className="hero-content live-content">
           {/* Handwritten welcoming note */}

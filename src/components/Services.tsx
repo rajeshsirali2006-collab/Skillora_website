@@ -83,7 +83,7 @@ export const Services: React.FC = () => {
               <span className="clay-tag-pill">Data Integrity</span>
             </div>
             <p className="service-desc">
-              Normalized schema architecture, indexing, and high-performance SQL query construction across MySQL, PostgreSQL, and MongoDB collections.
+              Normalized schema architecture, indexing, and high-performance SQL query construction across PostgreSQL, Supabase, and MySQL relational systems.
             </p>
             <ul className="service-features">
               <li><span className="bullet-dot sand-dot-bg"></span> Structured normalization &amp; record integrity</li>
@@ -91,7 +91,7 @@ export const Services: React.FC = () => {
               <li><span className="bullet-dot sand-dot-bg"></span> Seamless integration into backend APIs</li>
             </ul>
             <div className="service-footer">
-              <span className="service-badge-tech">MySQL • Relational SQL • MongoDB</span>
+              <span className="service-badge-tech">PostgreSQL • Supabase • MySQL</span>
             </div>
           </div>
 

@@ -68,7 +68,7 @@ export const Credentials: React.FC = () => {
           <div className="banner-body">
             <h3 className="banner-heading">Academic Foundation</h3>
             <p className="banner-text">
-              <strong>Bachelor of Engineering / Technology</strong> from MS Engineering College, Bangalore (2024 – 2026) 
+              <strong>Bachelor of Engineering / Technology</strong> from MS Engineering College, Bangalore (2024 – 2028) 
               • Prior: Pre-University Course (PUC Science PCMB) from Banajawad PU College, Athani with <strong>88% Distinction</strong>.
             </p>
           </div>

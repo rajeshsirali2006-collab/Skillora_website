@@ -1,11 +1,19 @@
 import React from 'react';
+import { DbStatus } from '../types';
 
 interface HeaderProps {
   isSkeleton: boolean;
   onToggleSkeleton: () => void;
+  onOpenInquiries?: () => void;
+  dbStatus?: DbStatus | null;
 }
 
-export const Header: React.FC<HeaderProps> = ({ isSkeleton, onToggleSkeleton }) => {
+export const Header: React.FC<HeaderProps> = ({
+  isSkeleton,
+  onToggleSkeleton,
+  onOpenInquiries,
+  dbStatus,
+}) => {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -33,19 +41,23 @@ export const Header: React.FC<HeaderProps> = ({ isSkeleton, onToggleSkeleton }) 
           <a href="#contact" onClick={scrollTo('contact')} className="nav-link nav-cta-pill">Sign &amp; Contact</a>
         </nav>
 
-        {/* Skeleton loading demo toggle */}
+        {/* Header Actions */}
         <div className="nav-actions">
+          {/* Preview skeleton toggle */}
           <button
+            id="toggleSkeletonBtn"
             onClick={onToggleSkeleton}
-            className="clay-pill-btn secondary-pill"
-            title="Toggle skeleton preview mode"
-            aria-label="Toggle skeleton preview mode"
+            className={`clay-pill-btn skeleton-toggle-compact ${isSkeleton ? 'primary-terracotta' : 'secondary-pill'}`}
+            title={isSkeleton ? 'Switch back to live view' : 'Toggle preview skeleton view'}
+            aria-label={isSkeleton ? 'Switch back to live view' : 'Toggle preview skeleton view'}
+            aria-pressed={isSkeleton}
           >
             <span className="btn-icon">{isSkeleton ? '🌿' : '✨'}</span>
-            <span className="btn-text">{isSkeleton ? 'Live View' : 'Skeleton View'}</span>
+            <span className="skeleton-btn-label">{isSkeleton ? 'Live' : 'Skeleton'}</span>
           </button>
         </div>
       </div>
     </header>
   );
 };
+

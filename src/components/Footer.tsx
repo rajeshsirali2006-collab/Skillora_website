@@ -1,6 +1,10 @@
 import React from 'react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenInquiries?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenInquiries }) => {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -24,7 +28,7 @@ export const Footer: React.FC = () => {
           </p>
         </div>
 
-        <div className="footer-links">
+        <div className="footer-links" style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
           <a href="#services" onClick={scrollTo('services')}>Services</a>
           <a href="#projects" onClick={scrollTo('projects')}>Projects</a>
           <a href="#about" onClick={scrollTo('about')}>About</a>
@@ -34,7 +38,7 @@ export const Footer: React.FC = () => {
 
         <div className="footer-bottom">
           <p className="copyright">
-            © 2026 Rajesh S I. Designed with tactile claymorphism &amp; warm analog warmth.
+            © 2026 Rajesh S I. Powered by Supabase &amp; Tactile Claymorphism.
           </p>
           <span className="footer-handwritten handwritten-script">Built with care &amp; clarity 🌿</span>
         </div>

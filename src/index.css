@@ -443,6 +443,188 @@ strong {
   color: #FFFFFF;
 }
 
+/* --- Nav Actions & Tactile Terracotta Clay Button --- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.clay-pill-terracotta-db {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #e36a4d 0%, #d85c3e 50%, #c44f33 100%);
+  color: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 8px 18px -4px rgba(216, 92, 62, 0.45),
+    0 3px 6px -2px rgba(216, 92, 62, 0.25),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.45),
+    inset -2px -2px 4px rgba(100, 30, 15, 0.35);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: visible;
+}
+
+.clay-pill-terracotta-db:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(135deg, #ea7355 0%, #df6546 50%, #cc5538 100%);
+  box-shadow:
+    0 12px 24px -4px rgba(216, 92, 62, 0.55),
+    0 5px 8px -2px rgba(216, 92, 62, 0.3),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 5px rgba(100, 30, 15, 0.4);
+}
+
+.clay-pill-terracotta-db:active {
+  transform: translateY(2px) scale(0.97);
+  box-shadow:
+    0 2px 4px rgba(216, 92, 62, 0.3),
+    inset 2px 3px 6px rgba(90, 25, 10, 0.5),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.db-status-ping-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.db-status-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+.db-status-ring.status-connected {
+  background-color: #34d399;
+  animation: db-live-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.db-status-ring.status-fallback {
+  background-color: #fbbf24;
+  animation: db-live-ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes db-live-ping {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.db-status-core {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.db-status-core.status-connected {
+  background: #10b981;
+  box-shadow: 0 0 8px #34d399, inset 1px 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.db-status-core.status-fallback {
+  background: #f59e0b;
+  box-shadow: 0 0 8px #fbbf24, inset 1px 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.db-btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.db-btn-title {
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+
+.db-status-chip {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+}
+
+.chip-connected {
+  background: rgba(16, 185, 129, 0.25);
+  color: #ecfdf5;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+.chip-fallback {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fffbeb;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.db-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  color: #c44f33;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.skeleton-toggle-compact {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .skeleton-btn-label {
+    display: none;
+  }
+  .skeleton-toggle-compact {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .db-status-chip {
+    display: none;
+  }
+  .clay-pill-terracotta-db {
+    padding: 7px 12px;
+    gap: 7px;
+  }
+}
+
 /* ==========================================================================
    HERO SECTION (Full-Bleed, Bold Headline, Single CTA)
    ========================================================================== */

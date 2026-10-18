@@ -1,37 +1,57 @@
 [
   {
-    "title": "Contact & Availability",
-    "keywords": ["contact", "email", "phone", "linkedin", "hire", "freelance", "reach", "location", "bangalore", "rate", "price"],
-    "content": "You can reach Rajesh S I via email at rajeshsirali21@gmail.com or by phone at +91 9380433994. He is based in Bangalore, Karnataka, India and is available for freelance contracts in data analytics and automation pipelines. Pricing is scoped per project based on dataset complexity and reporting needs."
+    "title": "Contact & Direct Channels",
+    "keywords": ["contact", "email", "phone", "linkedin", "hire", "freelance", "reach", "location", "bangalore", "whatsapp", "call", "schedule"],
+    "content": "You can reach Rajesh S I directly via email at rajeshirali12@gmail.com or by phone/WhatsApp at +91 9380433994. He is based in Bangalore, Karnataka, India and is readily available for freelance contracts, consulting, and end-to-end data pipelines globally."
   },
   {
-    "title": "Services Offered",
-    "keywords": ["services", "hire", "what do you do", "excel", "spreadsheets", "data cleaning", "automation", "dashboards", "sql", "pricing"],
-    "content": "Rajesh specializes in Advanced Excel automation (Power Query, Pivot Tables, formula workflows), automated data cleaning and validation, relational SQL databases (MySQL/MongoDB), and AI workflow integration. He eliminates repetitive manual tasks and builds self-updating executive dashboards."
+    "title": "Services & What Rajesh Builds",
+    "keywords": ["services", "hire", "what do you do", "excel", "spreadsheets", "data cleaning", "automation", "dashboards", "sql", "offer", "capabilities", "kpi"],
+    "content": "Rajesh specializes in three core client services:\n1. Advanced Excel Dashboards & Automation: Dynamic KPI summaries, Power Query ETL pipelines, automated reconciliation, and interactive formula models (>20% error reduction).\n2. Automated Data Cleaning & Validation: Converting chaotic CSV/Excel dumps into structured, normalized datasets with Python and validation rules.\n3. Relational SQL & AI Integration: Schema design (3NF), sub-second query retrieval (Supabase/PostgreSQL/MySQL), and practical AI workflow automation."
   },
   {
-    "title": "Technical Toolset & Languages",
-    "keywords": ["skills", "technologies", "languages", "tools", "python", "excel", "mysql", "mongodb", "power query", "pandas"],
-    "content": "Technical skills include Python, Relational SQL, C, MySQL, MongoDB, Advanced Excel (Pivot Tables, VLOOKUP/XLOOKUP, Power Query, Data Sanitization), and AI workflow integrations."
+    "title": "Pricing, Rates & Engagement Model",
+    "keywords": ["rate", "price", "pricing", "cost", "charge", "how much", "quote", "budget", "fixed price", "milestone", "hourly", "payment"],
+    "content": "Rajesh works primarily on fixed-scope milestone deliverables or project-based agreements, ensuring complete transparency with no surprise hourly overruns. Pricing is tailored to your dataset volume, complexity, and turnaround speed. To receive an accurate quote within 24 hours, submit your project details via the contact form or email rajeshirali12@gmail.com."
   },
   {
-    "title": "Excel & Analytics Dashboard Case Study",
-    "keywords": ["portfolio", "projects", "excel dashboard", "kpi", "vlookup", "power query", "error reduction"],
-    "content": "Rajesh built an Automated Data Processing & Analytics Dashboard in Excel at MS Engineering College that reduced manual entry error rates by over 20% using automated formula workflows, dynamic KPI summaries, and interactive reporting."
+    "title": "Turnaround Time & Delivery Speed",
+    "keywords": ["turnaround", "delivery", "timeline", "how long", "urgent", "deadline", "fast", "speed", "eta", "days"],
+    "content": "Delivery timelines depend on scope:\n- Excel Cleanup & Quick Formulas: 24 to 48 hours.\n- Custom KPI Dashboard & Power Query Pipeline: 3 to 5 business days.\n- Full Data System / SQL Database Pipeline: 1 to 2 weeks with iterative milestone demos.\nRush delivery is available for urgent operational deadlines."
   },
   {
-    "title": "Information Management & Workflow System",
-    "keywords": ["portfolio", "projects", "information management", "database", "sql", "relational schema", "3nf", "pipeline"],
-    "content": "Rajesh designed an Information Management & Workflow Optimization System using Python, normalized 3NF relational SQL schemas, and AI workflow integrations for sub-second query retrieval and automated administrative workflows."
+    "title": "How to Get Started & Client Onboarding Process",
+    "keywords": ["process", "start", "get started", "onboarding", "how we work", "steps", "collaboration", "requirement"],
+    "content": "Getting started is straightforward:\n1. Brief & Review: Share your current spreadsheet, raw sample data, or bottleneck via the on-site Sign & Contact form or at rajeshirali12@gmail.com.\n2. Scope & Proposal: Rajesh reviews your requirements and provides a fixed timeline and clear milestone plan.\n3. Build & Preview: Rajesh builds the solution with regular video/screen updates.\n4. Handover & Walkthrough: Complete handover with documentation and post-delivery support."
   },
   {
-    "title": "Work Experience & Internship",
-    "keywords": ["experience", "work history", "internship", "skill course", "job", "role"],
-    "content": "Rajesh interned at Skill Course as a Data Analytics & Automation Intern (AI Focus) in August 2026, where he developed automated data cleaning scripts, dynamic Excel summary dashboards, and integrated AI-assisted validation tools."
+    "title": "Data Privacy, Confidentiality & NDAs",
+    "keywords": ["nda", "confidential", "privacy", "security", "safe", "confidentiality", "proprietary", "client data", "agreement"],
+    "content": "Client data security and confidentiality are taken with utmost seriousness. Rajesh is pleased to sign your company's Non-Disclosure Agreement (NDA) before any proprietary datasets or credentials are shared. All local data is handled securely and wiped upon project sign-off unless retention is requested."
   },
   {
-    "title": "Education & Verified Credentials",
-    "keywords": ["education", "degree", "college", "certifications", "workshops", "training", "puc"],
-    "content": "Rajesh holds a Bachelor of Engineering (B.E.) from MS Engineering College, Bangalore (2024–2026), scored 88% distinction in PUC Science (Banajawad PU College), and holds official certifications in 'Microsoft Excel Beginners to Advance' (Credential ID: SC-G7CCPCI3PW) and 'Practical Data Analytics & AI Workflows' from SkillCourse."
+    "title": "Excel Technical Capabilities",
+    "keywords": ["power query", "pivot table", "xlookup", "vlookup", "macros", "formulas", "conditional formatting", "charts", "csv"],
+    "content": "In Excel, Rajesh handles: Power Query data ingestion and transformation, dynamic Pivot Tables, nested formulas (XLOOKUP, INDEX/MATCH, SUMIFS, LAMBDA), data validation, error handling, interactive slicing filters, executive presentation formatting, and automated template generation."
+  },
+  {
+    "title": "Python & SQL Technical Stack",
+    "keywords": ["python", "sql", "postgresql", "supabase", "mysql", "pandas", "openpyxl", "script", "database", "schema", "backend"],
+    "content": "For scripting and databases, Rajesh utilizes Python (Pandas, OpenPyXL, Requests), SQL (PostgreSQL, Supabase, MySQL), 3NF normalization, indexed queries, REST API integrations, and cloud storage pipelines."
+  },
+  {
+    "title": "Featured Case Studies & Results",
+    "keywords": ["case study", "portfolio", "projects", "proof", "experience", "results", "roi", "error reduction"],
+    "content": "Featured work includes:\n- Automated Data Processing & Analytics Dashboard in Excel: Reduced manual data entry error rates by >20% and automated weekly executive summaries.\n- Information Management & Workflow Optimization System: Scalable Python + relational SQL architecture with sub-second query latency and AI automation hooks."
+  },
+  {
+    "title": "Timezone & International Collaboration",
+    "keywords": ["timezone", "remote", "international", "us", "uk", "europe", "availability", "hours", "async"],
+    "content": "Rajesh is based in Bangalore, India (IST / UTC+5:30), but works with international clients across the US, UK, Europe, and Asia-Pacific. He provides flexible synchronous meeting windows and prompt asynchronous updates via email, WhatsApp, and Google Meet."
+  },
+  {
+    "title": "Education & Certified Credentials",
+    "keywords": ["education", "degree", "college", "certifications", "credential", "qualification", "b.e", "distinction"],
+    "content": "Rajesh holds a Bachelor of Engineering (B.E.) from MS Engineering College, Bangalore (2024–2028), achieved 88% distinction in PUC Science, and earned verified certifications in 'Microsoft Excel Beginners to Advance' (Credential ID: SC-G7CCPCI3PW) and 'Practical Data Analytics & AI Workflows' from SkillCourse."
   }
 ]
