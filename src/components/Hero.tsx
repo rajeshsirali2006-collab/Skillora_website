@@ -1,0 +1,116 @@
+import React from 'react';
+
+export const Hero: React.FC = () => {
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  return (
+    <section className="hero-section" id="hero">
+      <div className="container hero-container">
+        
+        {/* Skeleton placeholders shown during skeleton state */}
+        <div className="skeleton-content skeleton-hero" aria-hidden="true">
+          <div className="skeleton-badge shimmer"></div>
+          <div className="skeleton-title shimmer"></div>
+          <div className="skeleton-subtitle shimmer"></div>
+          <div className="skeleton-btn shimmer"></div>
+        </div>
+
+        <div className="hero-content live-content">
+          {/* Handwritten welcoming note */}
+          <div className="hero-handwritten-note">
+            <span className="handwritten-script">Hey there, welcome!</span>
+            <svg className="handwritten-arrow" width="36" height="30" viewBox="0 0 40 30" fill="none" aria-hidden="true">
+              <path d="M4 6C15 7 30 11 34 22M34 22L25 21M34 22L32 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+
+          <div className="hero-status-pill clay-pill">
+            <span className="status-dot"></span>
+            <span>Available for freelance contracts &amp; automated pipeline projects</span>
+          </div>
+
+          {/* Bold, singular headline */}
+          <h1 className="hero-headline">
+            Turning messy, unstructured data into clean, automated momentum.
+          </h1>
+
+          {/* Warm first-person microcopy */}
+          <p className="hero-subline">
+            I'm <strong>Rajesh</strong>, a freelance data analyst &amp; automation builder based in Bangalore. 
+            I build bespoke Excel dashboards, Python data pipelines, and AI-powered workflows that save 
+            teams hours of manual repetition and cut reporting errors by over 20%.
+          </p>
+
+          {/* Single, prominent pill-shaped CTA */}
+          <div className="hero-cta-wrapper">
+            <a href="#contact" onClick={scrollToContact} className="clay-pill-btn primary-terracotta hero-main-cta" id="heroCtaBtn">
+              <span className="cta-label">Let's Talk About Your Project</span>
+              <span className="clay-pill-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </a>
+            <span className="hero-cta-annotation handwritten-script">zero friction, reply within 24h!</span>
+          </div>
+
+          {/* Quick Trust Metrics / Floating Clay Pills */}
+          <div className="hero-trust-bar">
+            <div className="trust-item clay-pill-sand">
+              <span className="trust-number">20%+</span>
+              <span className="trust-label">Error Rate Reduction</span>
+            </div>
+            <div className="trust-item clay-pill-sand">
+              <span className="trust-number">10+ hrs</span>
+              <span className="trust-label">Saved Per Weekly Cycle</span>
+            </div>
+            <div className="trust-item clay-pill-sand">
+              <span className="trust-number">100%</span>
+              <span className="trust-label">Reliable Schema Quality</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 3D Clay Hero Visual Card */}
+        <div className="hero-visual live-content">
+          <div className="clay-hero-frame">
+            <img 
+              src="/assets/clay-analytics.jpg" 
+              alt="3D claymorphic analytics charts, donut graphs and pastel spheres" 
+              className="clay-hero-img" 
+            />
+            
+            {/* Floating Clay Badges on Hero Image */}
+            <div className="floating-badge badge-top-left clay-card-floating">
+              <span className="clay-mini-icon olive-icon">⚡</span>
+              <div>
+                <span className="badge-title">AI Workflows</span>
+                <span className="badge-sub">Auto data cleansing</span>
+              </div>
+            </div>
+
+            <div className="floating-badge badge-bottom-right clay-card-floating">
+              <span className="clay-mini-icon terracotta-icon">📊</span>
+              <div>
+                <span className="badge-title">Dynamic KPI</span>
+                <span className="badge-sub">Interactive Excel &amp; SQL</span>
+              </div>
+            </div>
+
+            <div className="clay-floating-stamp handwritten-script">
+              Crafted with care 🌿
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};

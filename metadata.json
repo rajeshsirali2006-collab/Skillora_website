@@ -1,0 +1,9 @@
+{
+  "name": "Rajesh S I — Portfolio & RAG Assistant",
+  "description": "Tactile claymorphic portfolio and interactive RAG assistant for Rajesh S I, Freelance Data Analyst & AI Automation Specialist based in Bangalore.",
+  "prompt": "Rajesh S I freelance data analyst and AI automation specialist portfolio with tactile claymorphism and AI assistant",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

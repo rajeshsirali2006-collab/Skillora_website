@@ -4,8 +4,10 @@
   "description": "Rajesh S I Freelance Portfolio with Production-Ready RAG Chatbot Integration",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "tsx server.ts",
+    "build": "vite build",
+    "start": "tsx server.ts",
+    "lint": "tsc --noEmit"
   },
   "keywords": [
     "portfolio",
@@ -23,5 +25,13 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@google/genai": "^2.30.0",
+    "@types/express": "^5.0.6",
+    "@vitejs/plugin-react": "^6.1.2",
+    "express": "^5.3.0",
+    "tsx": "^4.23.15",
+    "vite": "^8.3.4"
   }
 }

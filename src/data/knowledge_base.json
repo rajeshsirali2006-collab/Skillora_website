@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Contact & Availability",
+    "keywords": ["contact", "email", "phone", "linkedin", "hire", "freelance", "reach", "location", "bangalore", "rate", "price"],
+    "content": "You can reach Rajesh S I via email at rajeshsirali21@gmail.com or by phone at +91 9380433994. He is based in Bangalore, Karnataka, India and is available for freelance contracts in data analytics and automation pipelines. Pricing is scoped per project based on dataset complexity and reporting needs."
+  },
+  {
+    "title": "Services Offered",
+    "keywords": ["services", "hire", "what do you do", "excel", "spreadsheets", "data cleaning", "automation", "dashboards", "sql", "pricing"],
+    "content": "Rajesh specializes in Advanced Excel automation (Power Query, Pivot Tables, formula workflows), automated data cleaning and validation, relational SQL databases (MySQL/MongoDB), and AI workflow integration. He eliminates repetitive manual tasks and builds self-updating executive dashboards."
+  },
+  {
+    "title": "Technical Toolset & Languages",
+    "keywords": ["skills", "technologies", "languages", "tools", "python", "excel", "mysql", "mongodb", "power query", "pandas"],
+    "content": "Technical skills include Python, Relational SQL, C, MySQL, MongoDB, Advanced Excel (Pivot Tables, VLOOKUP/XLOOKUP, Power Query, Data Sanitization), and AI workflow integrations."
+  },
+  {
+    "title": "Excel & Analytics Dashboard Case Study",
+    "keywords": ["portfolio", "projects", "excel dashboard", "kpi", "vlookup", "power query", "error reduction"],
+    "content": "Rajesh built an Automated Data Processing & Analytics Dashboard in Excel at MS Engineering College that reduced manual entry error rates by over 20% using automated formula workflows, dynamic KPI summaries, and interactive reporting."
+  },
+  {
+    "title": "Information Management & Workflow System",
+    "keywords": ["portfolio", "projects", "information management", "database", "sql", "relational schema", "3nf", "pipeline"],
+    "content": "Rajesh designed an Information Management & Workflow Optimization System using Python, normalized 3NF relational SQL schemas, and AI workflow integrations for sub-second query retrieval and automated administrative workflows."
+  },
+  {
+    "title": "Work Experience & Internship",
+    "keywords": ["experience", "work history", "internship", "skill course", "job", "role"],
+    "content": "Rajesh interned at Skill Course as a Data Analytics & Automation Intern (AI Focus) in August 2026, where he developed automated data cleaning scripts, dynamic Excel summary dashboards, and integrated AI-assisted validation tools."
+  },
+  {
+    "title": "Education & Verified Credentials",
+    "keywords": ["education", "degree", "college", "certifications", "workshops", "training", "puc"],
+    "content": "Rajesh holds a Bachelor of Engineering (B.E.) from MS Engineering College, Bangalore (2024–2026), scored 88% distinction in PUC Science (Banajawad PU College), and holds official certifications in 'Microsoft Excel Beginners to Advance' (Credential ID: SC-G7CCPCI3PW) and 'Practical Data Analytics & AI Workflows' from SkillCourse."
+  }
+]
