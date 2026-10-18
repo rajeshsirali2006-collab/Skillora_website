@@ -1,6 +1,6 @@
 # Rajesh S I — Freelance Portfolio & RAG Chatbot
 
-!{image alt](https://github.com/rajeshsirali2006-collab/Skillora_website/blob/437c2f76588a5b6bc20efa38d26b75e9c85be3f8/Screenshot%202026-10-18%20225608.png)
+![image alt](https://github.com/rajeshsirali2006-collab/Skillora_website/blob/437c2f76588a5b6bc20efa38d26b75e9c85be3f8/Screenshot%202026-10-18%20225608.png)
 ![mage alt](https://github.com/rajeshsirali2006-collab/Skillora_website/blob/437c2f76588a5b6bc20efa38d26b75e9c85be3f8/Screenshot%202026-10-18%20230145.png)
 
 An interactive personal portfolio website for Rajesh S I, a freelance Data Analyst and Workflow Automation Specialist based in Bangalore. The project showcases case studies, interactive UI simulators, tactile claymorphic aesthetics, and an embedded full-stack RAG (Retrieval-Augmented Generation) assistant powered by Google Gemini (with an automatic offline fallback engine).
