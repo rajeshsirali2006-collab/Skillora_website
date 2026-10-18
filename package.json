@@ -1,0 +1,27 @@
+{
+  "name": "rajesh-portfolio-rag",
+  "version": "1.0.0",
+  "description": "Rajesh S I Freelance Portfolio with Production-Ready RAG Chatbot Integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "rag",
+    "claymorphism",
+    "data-analytics",
+    "freelancer"
+  ],
+  "author": "Rajesh S I",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2"
+  }
+}
