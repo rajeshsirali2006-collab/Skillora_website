@@ -1,4 +1,5 @@
 import React from 'react';
+import { SkilloraLogo } from './SkilloraLogo';
 
 interface FooterProps {
   onOpenInquiries?: () => void;
@@ -17,11 +18,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiries }) => {
     <footer className="site-footer">
       <div className="container footer-container">
         <div className="footer-left">
-          <div className="footer-brand">
-            <span className="brand-avatar-mini">
-              <img src="/assets/rajesh-profile.png" alt="Rajesh S I" className="mini-avatar-img" />
-            </span>
-            <span className="brand-name">Rajesh S I</span>
+          <div className="footer-brand" style={{ marginBottom: '10px' }}>
+            <SkilloraLogo variant="full" height={44} idPrefix="ftr-logo" />
           </div>
           <p className="footer-tagline">
             Freelance Data Analytics &amp; Workflow Automation Specialist. Based in Bangalore, serving clients globally.

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SkilloraLogo } from './SkilloraLogo';
 
 interface HeroProps {
   isSkeleton?: boolean;
@@ -47,15 +48,15 @@ export const Hero: React.FC<HeroProps> = ({ isSkeleton }) => {
         <div className="hero-content live-content">
           {/* Handwritten welcoming note */}
           <div className="hero-handwritten-note">
-            <span className="handwritten-script">Hey there, welcome!</span>
+            <span className="handwritten-script">Hey there, welcome to Skillora!</span>
             <svg className="handwritten-arrow" width="36" height="30" viewBox="0 0 40 30" fill="none" aria-hidden="true">
               <path d="M4 6C15 7 30 11 34 22M34 22L25 21M34 22L32 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
 
           <div className="hero-status-pill clay-pill">
-            <span className="status-dot"></span>
-            <span>Available for freelance contracts &amp; automated pipeline projects</span>
+            <SkilloraLogo variant="mark" height={20} idPrefix="hero-mark" />
+            <span>Turn Skills into Opportunities &bull; Open for contracts</span>
           </div>
 
           {/* Bold, singular headline */}

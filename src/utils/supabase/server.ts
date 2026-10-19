@@ -10,7 +10,9 @@ const supabaseKey =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
   process.env.SUPABASE_ANON_KEY ||
   process.env.SUPABASE_PUBLISHABLE_KEY ||
-  'sb_publishable_FWKVT96az_e4SHwEkB2L_g_jimu3X0s';
+  process.env.VITE_SUPABASE_ANON_KEY ||
+  '';
+const keyToUse = supabaseKey || 'placeholder-anon-key';
 
 export interface CookieAdapter {
   getAll: () => { name: string; value: string }[];
@@ -23,7 +25,7 @@ export interface CookieAdapter {
  */
 export const createServerSupabaseClient = (adapter?: CookieAdapter) => {
   if (adapter) {
-    return createServerClient(supabaseUrl, supabaseKey, {
+    return createServerClient(supabaseUrl, keyToUse, {
       cookies: {
         getAll() {
           return adapter.getAll();
@@ -37,7 +39,7 @@ export const createServerSupabaseClient = (adapter?: CookieAdapter) => {
 
   // Fallback memory cookie store for stateless API handlers
   const memoryCookies = new Map<string, string>();
-  return createServerClient(supabaseUrl, supabaseKey, {
+  return createServerClient(supabaseUrl, keyToUse, {
     cookies: {
       getAll() {
         return Array.from(memoryCookies.entries()).map(([name, value]) => ({ name, value }));
@@ -55,7 +57,7 @@ export const createServerSupabaseClient = (adapter?: CookieAdapter) => {
  * Express-specific helper to create a Supabase client bound to Express req & res cookies.
  */
 export const createExpressClient = (req: Request, res: Response) => {
-  return createServerClient(supabaseUrl, supabaseKey, {
+  return createServerClient(supabaseUrl, keyToUse, {
     cookies: {
       getAll() {
         const rawCookies = req.headers.cookie || '';

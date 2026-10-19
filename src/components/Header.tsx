@@ -1,5 +1,6 @@
 import React from 'react';
 import { DbStatus } from '../types';
+import { SkilloraLogo } from './SkilloraLogo';
 
 interface HeaderProps {
   isSkeleton: boolean;
@@ -25,12 +26,8 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="site-header" id="top">
       <div className="container nav-container">
-        <a href="#top" onClick={scrollTo('top')} className="nav-brand clay-pill-nav" aria-label="Rajesh S I Home">
-          <span className="brand-avatar-mini">
-            <img src="/assets/rajesh-profile.png" alt="Rajesh S I" className="mini-avatar-img" />
-          </span>
-          <span className="brand-name">Rajesh S I</span>
-          <span className="brand-badge clay-badge-olive">Freelance</span>
+        <a href="#top" onClick={scrollTo('top')} className="nav-brand clay-pill-nav" aria-label="Skillora — Turn Skills into Opportunities">
+          <SkilloraLogo variant="full" height={40} className="skillora-nav-logo" idPrefix="nav-logo" />
         </a>
 
         <nav className="nav-links clay-nav-island" aria-label="Main Navigation">

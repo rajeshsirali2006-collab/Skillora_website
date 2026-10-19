@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { GoogleGenAI } from '@google/genai';
 import {
   initDatabase,
   saveInquiry,
@@ -343,38 +344,22 @@ ${context}
 `;
 
     try {
-      const apiRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: 'user',
-                parts: [{ text: `${systemPrompt}\n\nClient Inquiry: ${userMessage}` }],
-              },
-            ],
-            generationConfig: {
-              temperature: 0.2,
-              maxOutputTokens: 250,
-            },
-          }),
-        }
-      );
+      const ai = new GoogleGenAI({ apiKey });
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: `${systemPrompt}\n\nClient Inquiry: ${userMessage}`,
+        config: {
+          temperature: 0.2,
+          maxOutputTokens: 250,
+        },
+      });
 
-      if (!apiRes.ok) {
-        const reply = getOfflineFallback(userMessage);
-        await saveChatLog(userMessage, reply, sessionId);
-        return res.json({ reply });
-      }
-
-      const data = await apiRes.json();
-      const candidateText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      const candidateText = response.text;
       const finalReply = candidateText ? candidateText.trim() : getOfflineFallback(userMessage);
       await saveChatLog(userMessage, finalReply, sessionId);
       return res.json({ reply: finalReply });
-    } catch {
+    } catch (err: any) {
+      console.warn('Gemini SDK call failed, falling back to local RAG engine:', err?.message);
       const reply = getOfflineFallback(userMessage);
       await saveChatLog(userMessage, reply, sessionId);
       return res.json({ reply });
