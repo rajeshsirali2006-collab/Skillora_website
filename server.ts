@@ -381,9 +381,9 @@ async function startServer() {
     const vite = await createViteServer({
       server: {
         middlewareMode: true,
-        // The preview proxy does not forward Vite's raw WebSocket endpoint.
-        // Disable the client socket to prevent repeated "closed without opened" errors.
-        hmr: false,
+        // Keep Vite's HMR client module complete so React refresh imports
+        // such as createHotContext are available in the preview.
+        hmr: { server: httpServer },
       },
       appType: 'spa',
     });
