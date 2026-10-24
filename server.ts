@@ -387,8 +387,19 @@ async function startServer() {
       },
       appType: 'spa',
     });
-    // Let Vite serve its complete client module, including createHotContext.
-    // HMR remains disabled because the preview proxy does not forward the socket.
+    // Serve Vite's client explicitly so the preview receives the complete module
+    // and React refresh can import createHotContext from it.
+    app.get('/@vite/client', async (_req, res, next) => {
+      try {
+        const transformedClient = await vite.transformRequest('/@vite/client');
+        if (!transformedClient) {
+          return next();
+        }
+        res.type('application/javascript').set('Cache-Control', 'no-store').send(transformedClient.code);
+      } catch (error) {
+        next(error);
+      }
+    });
     app.use(vite.middlewares);
   } else {
     app.use(express.static(path.resolve(__dirname, 'dist')));
