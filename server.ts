@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { createServer as createHttpServer } from 'http';
 import { GoogleGenAI } from '@google/genai';
 import {
   initDatabase,
@@ -373,12 +374,31 @@ async function startServer() {
   await initDatabase();
 
   const isProd = process.env.NODE_ENV === 'production';
+  const httpServer = createHttpServer(app);
 
   if (!isProd) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        // Keep Vite's HMR client module complete so React refresh imports
+        // such as createHotContext are available in the preview.
+        hmr: { server: httpServer },
+      },
       appType: 'spa',
+    });
+    // Serve Vite's client explicitly so the preview receives the complete module
+    // and React refresh can import createHotContext from it.
+    app.get('/@vite/client', async (_req, res, next) => {
+      try {
+        const transformedClient = await vite.transformRequest('/@vite/client');
+        if (!transformedClient) {
+          return next();
+        }
+        res.type('application/javascript').set('Cache-Control', 'no-store').send(transformedClient.code);
+      } catch (error) {
+        next(error);
+      }
     });
     app.use(vite.middlewares);
   } else {
@@ -388,7 +408,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`Rajesh S I Portfolio Server listening on http://0.0.0.0:${PORT}`);
   });
 

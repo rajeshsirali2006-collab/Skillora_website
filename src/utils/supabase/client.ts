@@ -4,7 +4,7 @@ import { createClient as createSupabaseClient, type SupabaseClient } from '@supa
 export const supabaseUrl =
   (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_SUPABASE_URL) ||
   (typeof import.meta !== 'undefined' && (import.meta as any)?.env?.VITE_SUPABASE_URL) ||
-  'https://rwjsepktqzgmbsslpusq.supabase.co';
+  '';
 
 export const supabaseKey =
   (typeof process !== 'undefined' &&
@@ -16,7 +16,7 @@ let browserClient: SupabaseClient | null = null;
 
 export const createClient = (): SupabaseClient => {
   if (!browserClient) {
-    const key = supabaseKey || 'placeholder-anon-key';
+    const key = supabaseKey;
     try {
       if (supabaseKey) {
         browserClient = createBrowserClient(supabaseUrl, key);

@@ -170,7 +170,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast, onOpenInquiries }
     setFormStatus({
       type: 'success',
       message: `🎉 Thank you, ${name}! Your inquiry for "${scope}" has been signed as "${sig}".`,
-      sub: `Stored in Supabase database (project: rwjsepktqzgmbsslpusq). Fields saved: client_name, client_email, service_interest, and signature_path.`
+          sub: 'Stored in the connected Supabase database. Fields saved: client_name, client_email, service_interest, and signature_path.'
     });
 
     onShowToast(`Signed inquiry stored in Supabase! ⚡`, '🖋️');
@@ -465,18 +465,6 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast, onOpenInquiries }
                   <div className={`form-status-msg ${formStatus.type}`} role="status">
                     <p><strong>{formStatus.message}</strong></p>
                     {formStatus.sub && <p style={{ marginTop: '6px' }}>{formStatus.sub}</p>}
-                    {formStatus.type === 'success' && onOpenInquiries && (
-                      <div style={{ marginTop: '10px' }}>
-                        <button
-                          type="button"
-                          onClick={onOpenInquiries}
-                          className="clay-pill-btn secondary-terracotta"
-                          style={{ padding: '6px 14px', fontSize: '0.8rem' }}
-                        >
-                          ⚡ View Record in Supabase Dashboard
-                        </button>
-                      </div>
-                    )}
                   </div>
                 )}
 

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440" width="100%" height="100%" style="display:block;">
+  <defs>
+    <!-- Top outer ribbon: Cyan to Electric Blue -->
+    <linearGradient id="topRibbonGrad" x1="10%" y1="90%" x2="95%" y2="15%">
+      <stop offset="0%" stop-color="#00D8FF" />
+      <stop offset="35%" stop-color="#00B4FF" />
+      <stop offset="70%" stop-color="#0080FF" />
+      <stop offset="100%" stop-color="#0055FF" />
+    </linearGradient>
+
+    <!-- Fold shadow giving 3D depth to the ribbon twist -->
+    <linearGradient id="foldCreaseGrad" x1="90%" y1="20%" x2="10%" y2="80%">
+      <stop offset="0%" stop-color="#003B99" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#0F172A" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#31104B" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Bottom loop ribbon: Electric Blue to Rich Indigo to Violet & Purple -->
+    <linearGradient id="bottomRibbonGrad" x1="20%" y1="10%" x2="85%" y2="95%">
+      <stop offset="0%" stop-color="#0066FF" />
+      <stop offset="30%" stop-color="#3B82F6" />
+      <stop offset="60%" stop-color="#6366F1" />
+      <stop offset="85%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+
+    <!-- Under-fold inner gradient -->
+    <linearGradient id="innerLoopGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#0070F3" />
+      <stop offset="50%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+
+    <!-- Glowing Cyan Dot on the letter 'i' -->
+    <radialGradient id="cyanDotGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="55%" stop-color="#00A3FF" />
+      <stop offset="100%" stop-color="#0070E0" />
+    </radialGradient>
+
+    <filter id="crispShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0A1128" flood-opacity="0.04" />
+    </filter>
+  </defs>
+
+  <!-- Left S-Ribbon Mark -->
+  <g id="skillora-mark" transform="translate(35, 45)" filter="url(#crispShadow)">
+    <!-- Base Bottom Loop (flowing from center to bottom-left violet terminal) -->
+    <path 
+      d="M 175 190 
+         C 225 210, 275 240, 275 285 
+         C 275 330, 235 365, 175 365 
+         C 120 365, 75 335, 70 295 
+         C 68 280, 84 270, 96 280 
+         C 112 295, 140 315, 175 315 
+         C 215 315, 225 285, 195 265 
+         C 165 245, 125 225, 80 195 
+         C 65 185, 68 165, 85 165 
+         C 115 165, 145 178, 175 190 
+         Z" 
+      fill="url(#bottomRibbonGrad)" 
+    />
+
+    <!-- Inner 3D Crease Shadow -->
+    <path 
+      d="M 175 190 
+         C 205 205, 245 230, 260 255 
+         C 245 235, 215 215, 175 190 
+         Z" 
+      fill="url(#foldCreaseGrad)" 
+      opacity="0.55"
+    />
+
+    <!-- Main Dynamic Top Ribbon Loop (Cyan to Electric Blue) -->
+    <path 
+      d="M 75 190 
+         C 65 130, 105 55, 185 55 
+         C 240 55, 275 85, 280 110 
+         C 282 120, 270 126, 260 120 
+         C 235 105, 210 98, 185 98 
+         C 135 98, 115 130, 120 170 
+         C 125 200, 160 220, 210 230 
+         C 230 234, 240 225, 235 212 
+         C 220 185, 180 165, 145 155 
+         C 95 140, 78 165, 75 190 
+         Z" 
+      fill="url(#topRibbonGrad)" 
+    />
+  </g>
+
+  <!-- Right Typography Group -->
+  <g id="skillora-wordmark" transform="translate(370, 40)">
+    <!-- Brand Name: Skillora -->
+    <!-- Notice: We draw 'Sk', dotless 'ı', and 'llora' so the dot on 'i' is replaced by the custom cyan circle -->
+    <text 
+      x="0" 
+      y="205" 
+      font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Inter', 'Montserrat', 'Segoe UI', system-ui, sans-serif" 
+      font-size="152" 
+      font-weight="800" 
+      letter-spacing="-0.035em" 
+      fill="#0B132B"
+    >Sk<tspan fill="#0B132B">&#305;</tspan>llora</text>
+
+    <!-- Custom Cyan Dot on the 'i' -->
+    <circle cx="232" cy="98" r="21" fill="url(#cyanDotGrad)" />
+
+    <!-- Tagline: Turn Skills into Opportunities -->
+    <text 
+      x="5" 
+      y="278" 
+      font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Inter', 'Segoe UI', system-ui, sans-serif" 
+      font-size="34" 
+      font-weight="600" 
+      letter-spacing="0.105em" 
+      fill="#475569"
+    >Turn Skills into Opportunities</text>
+  </g>
+</svg>
