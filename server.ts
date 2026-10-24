@@ -387,11 +387,8 @@ async function startServer() {
       },
       appType: 'spa',
     });
-    // The v0 preview proxy does not provide Vite's HMR WebSocket endpoint.
-    // Serve a no-op client so stale/injected Vite client requests cannot open a socket.
-    app.get('/@vite/client', (_req, res) => {
-      res.type('application/javascript').set('Cache-Control', 'no-store').send('');
-    });
+    // Let Vite serve its complete client module, including createHotContext.
+    // HMR remains disabled because the preview proxy does not forward the socket.
     app.use(vite.middlewares);
   } else {
     app.use(express.static(path.resolve(__dirname, 'dist')));
