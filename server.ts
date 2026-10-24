@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { createServer as createHttpServer } from 'http';
 import { GoogleGenAI } from '@google/genai';
 import {
   initDatabase,
@@ -373,11 +374,15 @@ async function startServer() {
   await initDatabase();
 
   const isProd = process.env.NODE_ENV === 'production';
+  const httpServer = createHttpServer(app);
 
   if (!isProd) {
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        hmr: { server: httpServer },
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -388,7 +393,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`Rajesh S I Portfolio Server listening on http://0.0.0.0:${PORT}`);
   });
 
