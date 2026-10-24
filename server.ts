@@ -381,7 +381,9 @@ async function startServer() {
     const vite = await createViteServer({
       server: {
         middlewareMode: true,
-        hmr: { server: httpServer },
+        // The preview proxy does not forward Vite's raw WebSocket endpoint.
+        // Disable the client socket to prevent repeated "closed without opened" errors.
+        hmr: false,
       },
       appType: 'spa',
     });
