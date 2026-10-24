@@ -449,17 +449,6 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast, onOpenInquiries }
                   )}
                 </div>
 
-                <div className="form-submit-row">
-                  <button 
-                    type="submit" 
-                    className="clay-pill-btn primary-terracotta form-submit-btn" 
-                    id="submitContactBtn"
-                    disabled={isSubmitting}
-                  >
-                    <span>{isSubmitting ? 'Saving to Database...' : 'Send Message & Sign Inquiry'}</span>
-                    <span className="btn-arrow">→</span>
-                  </button>
-                </div>
 
                 {formStatus && (
                   <div className={`form-status-msg ${formStatus.type}`} role="status">
