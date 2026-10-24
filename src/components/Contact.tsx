@@ -170,7 +170,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast, onOpenInquiries }
     setFormStatus({
       type: 'success',
       message: `🎉 Thank you, ${name}! Your inquiry for "${scope}" has been signed as "${sig}".`,
-      sub: `Stored in Supabase database (project: rwjsepktqzgmbsslpusq). Fields saved: client_name, client_email, service_interest, and signature_path.`
+          sub: 'Stored in the connected Supabase database. Fields saved: client_name, client_email, service_interest, and signature_path.'
     });
 
     onShowToast(`Signed inquiry stored in Supabase! ⚡`, '🖋️');
