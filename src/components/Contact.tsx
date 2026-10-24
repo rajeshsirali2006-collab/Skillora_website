@@ -310,7 +310,7 @@ export const Contact: React.FC<ContactProps> = ({ onShowToast, onOpenInquiries }
 
             {/* Right Column: Interactive Sign & Contact Form */}
             <div className="contact-form-col">
-              <form className="clay-contact-form" id="contactForm" onSubmit={handleSubmit} noValidate>
+              <form className="clay-contact-form" id="contactForm" onSubmit={handleSubmit} noValidate hidden>
                 
                 <div className="form-row">
                   <label htmlFor="clientName" className="clay-label">Your Name or Company</label>
